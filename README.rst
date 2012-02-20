@@ -12,4 +12,7 @@ Why
 Why another command-not-found handler (we have pactools alreay)? 
 The reason is I think pactools is slow, because it always parses compressed archive files. Pacfind uses a constant database (Tiny-CDB) to store parsed content, so that we have a much faster lookup later.
 
+One thing I'd like pacfind to have is that it can search AUR database too. This functionalit is not available right now.
+
 Another reason is pactools depends on Python heavily, however I'd like a pure C solution.
+
