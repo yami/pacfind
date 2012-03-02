@@ -1,3 +1,4 @@
+
 Introduction
 ============
 
@@ -23,3 +24,16 @@ to store parsed content, so that we have a much faster lookup later.
 
 Another reason is pactools depends on Python heavily, however I'd like
 a pure C solution.
+
+
+Some Notes on Source Code
+=========================
+
+1. bindb.h/c: the interface to the binary database, i.e. the database storing binary name to package mapping.
+2. conf.h/c: read the JSON format configuration file by using jansson library.
+3. download.h/c: download the archived files from mirror site by using CURL library.
+4. filedb.h/c: the interface to the file database, i.e. the database storing repositor file list. Currently the official format is archive file.
+5. pacfind.c: the file where main() locates.
+6. slist.h/c: single linked list implementation
+7. ttemp.h/c: simple text template implementation. Variables are prefixed with '$', and will be replaced by their values.
+8. util.h/c: some utilities.
