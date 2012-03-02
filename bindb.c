@@ -282,9 +282,9 @@ bindb_query(const char *bindb_dir, const char *bindb_filename, const char *bin)
     int fd = open(bindb_pathname, O_RDONLY);
     
     if (fd == -1) {
+        fprintf(stderr, "bindb_query: failed to open bindb %s\n",
+                bindb_pathname);
         xfree(bindb_pathname);
-        
-        fprintf(stderr, "bindb_query: failed to open bindb\n");
         return NULL;
     }
 

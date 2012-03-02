@@ -7,18 +7,9 @@
 #include "bindb.h"
 #include "util.h"
 #include "download.h"
+#include "conf.h"
 
-static const char *Server = "http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch";
-static const char *Repository[] = {
-    "core",
-    "extra",
-    "community",
-    "multilib",
-    NULL
-};
-
-
-int do_update(const char *config_file, const char *pconfig_file)
+int do_update(struct config *config)
 {
     struct utsname sysinfo;
 
@@ -36,22 +27,20 @@ int do_update(const char *config_file, const char *pconfig_file)
         { NULL,   NULL }
     };
 
-    const char *bindb_dir =  "/tmp/pacfind";
-    const char *bindb_file = "bindb";
-
-    struct bindb_context *bctx = bindb_context_new(bindb_dir, bindb_file);
+    struct bindb_context *bctx =
+        bindb_context_new(config->bindb_dir, config->bindb_file);
     
     char *url = NULL;
     char *file = NULL;
 
     const char *repo;
     
-    for (int irepo = 0; Repository[irepo]; irepo++) {
-        repo = nv[1].value = Repository[irepo];
+    for (int irepo = 0; config->repositories[irepo]; irepo++) {
+        repo = nv[1].value = config->repositories[irepo];
 
-        const char *root_url = ttemp_fill(Server, nv);
+        const char *root_url = ttemp_fill(config->update_server, nv);
 
-        if (asprintf(&file, "%s/%s.files.tar.gz", bindb_dir, repo) == -1) {
+        if (asprintf(&file, "%s/%s.files.tar.gz", config->bindb_dir, repo) == -1) {
             return 1;
         }
         

@@ -1,0 +1,7 @@
+{
+    "update_server" : "http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch",
+    "repositories"  : [ "core", "extra", "community", "multilib" ],
+
+    "bindb_dir"  : "/var/pacfind",
+    "bindb_file" : "bindb"
+}

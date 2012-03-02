@@ -34,6 +34,12 @@
     }                                           \
     _v; })
 
+#define sassert_value(V) ({                     \
+    typeof(V) _v = (V);                         \
+    if (!_v) {                                  \
+              die(#V);                          \
+    }                                           \
+    _v; })
 
 void *xmalloc(size_t size);
 void *zmalloc(size_t size);

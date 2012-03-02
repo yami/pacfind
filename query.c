@@ -1,14 +1,12 @@
 #include "bindb.h"
 #include "slist.h"
+#include "conf.h"
 
 #include <stdio.h>
 
-int do_query(const char *config_file, const char *bin)
+int do_query(struct config *config, const char *bin)
 {
-    const char *bindb_dir = "/tmp/pacfind";
-    const char *bindb_file = "bindb";
-
-    struct slist *qlist = bindb_query(bindb_dir, bindb_file, bin);
+    struct slist *qlist = bindb_query(config->bindb_dir, config->bindb_file, bin);
 
     if (!qlist) {
         fprintf(stderr, "do_query: failed to query %s\n", bin);

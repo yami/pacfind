@@ -1,6 +1,8 @@
 #ifndef PACKFIND_QUERY_H
 #define PACKFIND_QUERY_H
 
-int do_query(const char *config_file, const char *bin);
+struct config;
+
+int do_query(struct config *config, const char *bin);
 
 #endif
